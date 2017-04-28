@@ -88,6 +88,11 @@
     class="de.hybris.platform.cuppytrail.systemsetup.CuppyTrailSystemSetup"
     scope="tenant">
     <property name="importService" ref="importService" />
-</bean>		
+</bean>	
+
+	<alias name="defaultStadiumService" alias="stadiumService"/>
+    <bean id="defaultStadiumService" class="de.hybris.platform.cuppytrail.impl.DefaultStadiumService">
+        <property name="stadiumDAO" ref="stadiumDAO"/>
+    </bean>	
 </beans>
 
