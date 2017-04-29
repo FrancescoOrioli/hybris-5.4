@@ -89,10 +89,15 @@
     scope="tenant">
     <property name="importService" ref="importService" />
 </bean>	
-
-	<alias name="defaultStadiumService" alias="stadiumService"/>
-    <bean id="defaultStadiumService" class="de.hybris.platform.cuppytrail.impl.DefaultStadiumService">
-        <property name="stadiumDAO" ref="stadiumDAO"/>
-    </bean>	
+	
+		<alias name="defaultStadiumService" alias="stadiumService"/>
+	    <bean id="defaultStadiumService" class="de.hybris.platform.cuppytrail.impl.DefaultStadiumService">
+	        <property name="stadiumDAO" ref="stadiumDAO"/>
+	    </bean>	
+	    
+	    <alias name="defaultStadiumFacade" alias="stadiumFacade"/>
+			<bean id="defaultStadiumFacade" class="de.hybris.platform.cuppytrail.facades.impl.DefaultStadiumFacade">
+	  		<property name="stadiumService" ref="stadiumService" />
+</bean>
 </beans>
 
