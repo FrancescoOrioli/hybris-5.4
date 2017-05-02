@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+
+  
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	
+
+	<enumtypes>
+        <enumtype code="DifficultType" autocreate="true" generate="true" dynamic="false">
+            <value code="facile"/>
+            <value code="medio"/>
+           <value code="difficile"/>
+        </enumtype> 
+	</enumtypes>
+	
+	 <relations>
+    	<relation code="Recipe2RecipeEntryRelation" localized="false" generate="true" autocreate="true">
+       		<sourceElement type="Recipe" qualifier="recipe" cardinality="one" />
+       		<targetElement type="RecipeEntry" qualifier="recipeEntry" cardinality="many"/>
+    	</relation>
+    	
+	</relations> 
+	
+	<itemtypes>
+		<itemtype code ="Recipe" generate="true" autocreate="true">
+			<deployment table="Recipe" typecode="30000"/>
+			<attributes>
+                <attribute qualifier="cod" type="java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="true"/>
+                
+                </attribute>
+                <attribute qualifier="nome" type="localized:java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+                
+                <attribute qualifier="descrizione" type="localized:java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+				
+				<attribute qualifier="tempo" type="java.lang.Integer" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+			
+				<attribute type="DifficultType" qualifier="difficolta">
+				    <persistence type="property"/>
+				    <defaultvalue>em().getEnumerationValue("DifficultType","basso")</defaultvalue>
+				</attribute>
+				
+				<attribute qualifier="persone" type="java.lang.Integer" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+			
+				<attribute qualifier="NumIngredienti" type="java.lang.Integer" >
+                    <persistence type="dynamic" attributeHandler="numberOfIngredientsAttributeHandler"/>
+                    <modifiers optional="true" read ="true" write="false"/>
+                </attribute>
+			</attributes>
+		</itemtype>	
+		
+	<itemtype code ="Food" generate="true" autocreate="true">
+		<deployment table="Food" typecode="30001"/>
+		<attributes>
+                <attribute qualifier="cod" type="java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="true"/>
+                
+                </attribute>
+                <attribute qualifier="nome" type="localized:java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+                
+                <attribute qualifier="descrizione" type="localized:java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+         </attributes>
+				
+	</itemtype>	
+	
+	<itemtype code ="RecipeEntry" generate="true" autocreate="true">
+		<deployment table="RecipeEntry" typecode="30002"/>
+		<attributes>
+                <attribute qualifier="prodotto" type="Food" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="true"/>
+                
+                </attribute>
+                <attribute qualifier="quantity" type="java.lang.Integer" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+                
+                <attribute qualifier="name" type="localized:java.lang.String" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+                
+                 <attribute qualifier="unity" type="Unit" >
+                    <persistence type="property"/>
+                    <modifiers optional="false" unique="false"/>
+                </attribute>
+         </attributes>
+				
+	</itemtype>	
+		
+		
+		
+	</itemtypes>
+</items>
